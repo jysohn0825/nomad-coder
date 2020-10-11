@@ -37,7 +37,7 @@
         </a>
         <main class = "friends-screen">
             <div class = "user-component">
-                <div class="user-component__column">
+                <div class="user-component__column-title">
                     <img class="user-component__img--xl user-component__img" src="https://avatars3.githubusercontent.com/u/43517509?s=460&u=332a86902f01110a56e14dbd0ab50e996c253091&v=4"/>
                     <div class = "user-component__text">
                         <h4 class="user-component__title">RedBee</h4>
@@ -46,22 +46,66 @@
                 </div>
             </div>
             <div class = "friends-screen__channel">
-                <div class = "friends-screen__channel-header">
-                    <span>Channel</span>
-                    <i class = "fas fa-chevron-up fa-xs"></i>
-                </div>
-                <div class = "user-component">
-                    <div class="user-component__column">
-                        <img class="user-component__img--sm user-component__img" src="https://avatars3.githubusercontent.com/u/43517509?s=460&u=332a86902f01110a56e14dbd0ab50e996c253091&v=4"/>
-                        <div class = "user-component__text">
-                            <h4 class="user-component__title">Channel</h4>
+                <ul>
+                    <li>
+                        <div class = "friends-screen__channel-header">
+                            <span>Channel</span>
+                            <i class = "fas fa-chevron-up fa-xs"></i>
                         </div>
-                    </div>
-                    <div class="user-component__column">
-                        <span>2</span>
-                        <i class = "fas fa-chevron-right"></i>
-                    </div>
-                </div>
+                        <div class = "user-component">
+                            <div class="user-component__column">
+                                <img class="user-component__img--sm user-component__img" src="https://avatars3.githubusercontent.com/u/43517509?s=460&u=332a86902f01110a56e14dbd0ab50e996c253091&v=4"/>
+                                <div class = "user-component__text">
+                                    <h4 class="user-component__title user-component__title--not-bold">Channel</h4>
+                                </div>
+                            </div>
+                            <div class="user-component__column">
+                                <div>
+                                    <span>2</span>
+                                    <i class = "fas fa-chevron-right"></i>    
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class = "friends-screen__channel-header">
+                            <span>Friends</span>
+                            <i class = "fas fa-chevron-up fa-xs"></i>
+                        </div>
+                        <ul>
+                            <li class = "user-component">
+                                <div class="user-component__column">
+                                    <img class="user-component__img--sm user-component__img" src="https://avatars3.githubusercontent.com/u/43517509?s=460&u=332a86902f01110a56e14dbd0ab50e996c253091&v=4"/>
+                                    <div class = "user-component__text">
+                                        <h4 class="user-component__title user-component__title--not-bold">Friens_name</h4>
+                                    </div>
+                                </div>
+                                <div class="user-component__column">
+                                </div>
+                            </li>
+                            <li class = "user-component">
+                                <div class="user-component__column">
+                                    <img class="user-component__img--sm user-component__img" src="https://avatars3.githubusercontent.com/u/43517509?s=460&u=332a86902f01110a56e14dbd0ab50e996c253091&v=4"/>
+                                    <div class = "user-component__text">
+                                        <h4 class="user-component__title user-component__title--not-bold">Friens_name</h4>
+                                    </div>
+                                </div>
+                                <div class="user-component__column">
+                                </div>
+                            </li>
+                            <li class = "user-component">
+                                <div class="user-component__column">
+                                    <img class="user-component__img--sm user-component__img" src="https://avatars3.githubusercontent.com/u/43517509?s=460&u=332a86902f01110a56e14dbd0ab50e996c253091&v=4"/>
+                                    <div class = "user-component__text">
+                                        <h4 class="user-component__title user-component__title--not-bold">Friens_name</h4>
+                                    </div>
+                                </div>
+                                <div class="user-component__column">
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul> 
             </div>
         </main>
 
@@ -69,22 +113,22 @@
             <ul class = "nav__lists">
                 <li class ="nav__btn">
                     <a class = "nav__link" href="friends.html">
-                        <i class="far fa-user fa-2x"></i>
+                        <i class="fas fa-user fa-2x"></i>
                     </a>
                 </li>
                 <li class ="nav__btn">
-                    <a class = "nav__link" href="#">
-                        <span class = "nav_notification">1</span>
-                        <i class="fas fa-comment fa-2x"></i>
+                    <a class = "nav__link" href="chats.html">
+                        <span class = "nav_notification badge">1</span>
+                        <i class="far fa-comment fa-2x"></i>
                     </a>
                 </li>
                 <li class ="nav__btn">
-                    <a class = "nav__link" href="#">
+                    <a class = "nav__link" href="find.html">
                         <i class="fas fa-search fa-2x"></i>
                     </a>
                 </li>
                 <li class ="nav__btn">
-                    <a class = "nav__link" href="#">
+                    <a class = "nav__link" href="more.html">
                         <div class = "link_notification"></div>
                         <i class="fas fa-ellipsis-h fa-2x"></i>
                     </a>
