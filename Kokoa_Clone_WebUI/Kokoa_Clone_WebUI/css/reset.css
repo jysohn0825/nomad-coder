@@ -49,3 +49,9 @@ input:focus{
 .nav__link{
     color:inherit;
 }
+
+::-webkit-scrollbar {
+
+	display:none;
+	
+}

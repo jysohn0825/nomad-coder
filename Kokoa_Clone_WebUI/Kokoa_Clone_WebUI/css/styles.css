@@ -9,6 +9,7 @@
 @import "components/badge.css";
 @import "components/icon-row.css";
 @import "components/alt-screen-header.css";
+@import "components/no-mobile.css";
 /*screen*/
 @import "screens/login.css";
 @import "screens/friends.css";
@@ -26,10 +27,7 @@ body{
     padding:0px var(--horizontal-space);
 }
 
-a i{
-    text-decoration: none;
-}
-
+a i, 
 a{
     text-decoration: none;
 }
