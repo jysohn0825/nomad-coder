@@ -4,7 +4,7 @@
 
 KakaoTalk GUI clone<br>
 <br>
-Something new learn - BEM, display:flex, animation, media-query <br>
+### Something new learn - BEM, display:flex, animation, media-query <br>
 <br>로그인 화면<br>
 <center><img src="https://user-images.githubusercontent.com/43517509/95930715-2d707400-0e02-11eb-8d1a-e5a1eb6aca1e.png"></center>
 <br>친구 화면<br>
