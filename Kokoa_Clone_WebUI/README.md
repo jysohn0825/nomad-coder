@@ -1,6 +1,6 @@
 # Kokoa_Clone_WebUI
 
-## [Explanation](https://jysohn0825.github.io/kokoaclone/)
+## Explanation([URL](https://jysohn0825.github.io/kokoaclone/))
 
 KakaoTalk GUI clone<br>
 <br>
