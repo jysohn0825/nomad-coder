@@ -11,43 +11,38 @@ def index() :
     if 'username' in session :
         if 'username' != '' or None :
             return redirect(url_for('friends'))
-
         else :
             session.pop('username', None)
             return redirect(url_for('index'))
     return render_template('/index.html')
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login() :
     name = request.form['username']
     pwd = request.form['password']
-    session['username'] = name
-    return redirect(url_for('friends'))
-    # conn = pymysql.connect(host=IP, user=USER, password=PASSWORD, db=DB, charset='utf8')
-    # cur = conn.cursor()
-
-    # try:
-    #     sql = "Select * from user where USER_ID = '" + name + "'"
-    #     cur.execute(sql)
-    #     userinfo = cur.fetchone()
-    #     if name == '' or None :
-    #         return redirect(url_for('index'))
-    #     elif userinfo[2] == pwd:
-    #         session['username'] = name
-    #         return redirect(url_for('friends'))
-    #     else:
-    #         return redirect(url_for('index'))
-    # except:
-    #     return redirect(url_for('index'))
-    # finally:
-    #     cur.close()
-    #     conn.close()
-
+    conn = pymysql.connect(host=IP, user=USER, password=PASSWORD, db=DB, charset='utf8')
+    cur = conn.cursor()
+    try:
+        sql = "Select * from user where USER_ID = '" + name + "'"
+        cur.execute(sql)
+        userinfo = cur.fetchone()
+        if name == '' or None :
+            return redirect(url_for('index'))
+        elif userinfo[2] == pwd:
+            session['username'] = name
+            return redirect(url_for('friends'))
+        else:
+            return redirect(url_for('index'))
+    except:
+        return redirect(url_for('index'))
+    finally:
+        cur.close()
+        conn.close()
 
 @app.route('/sign', methods=['POST'])
 def sign() :
     return render_template('/sign.html')
-
 
 @app.route('/signup', methods=['POST'])
 def signup() :
@@ -59,28 +54,6 @@ def signup() :
     session['username'] = id
     return redirect(url_for('friends'))
 
-    # conn = pymysql.connect(host=IP, user=USER, password=PASSWORD, db=DB, charset='utf8')
-    # cur = conn.cursor()
-
-    # try:
-    #     sql = "Select * from user where USER_ID = '" + name + "'"
-    #     cur.execute(sql)
-    #     userinfo = cur.fetchone()
-    #     if name == '' or None :
-    #         return redirect(url_for('index'))
-    #     elif userinfo[2] == pwd:
-    #         session['username'] = name
-    #         return redirect(url_for('friends'))
-    #     else:
-    #         return redirect(url_for('index'))
-    # except:
-    #     return redirect(url_for('index'))
-    # finally:
-    #     cur.close()
-    #     conn.close()
-
-
-
 @app.route('/logout')
 def logout() :
     session.pop('username', None)
@@ -89,17 +62,73 @@ def logout() :
 @app.route('/friends')
 def friends() :
     username = session['username']
-    return render_template('/friends.html', username = username)
+    conn = pymysql.connect(host=IP, user=USER, password=PASSWORD, db=DB, charset='utf8')
+    cur = conn.cursor()
+    sql = "SELECT * FROM user WHERE USER_ID IN (SELECT USER2 FROM friends WHERE USER1 = '" + username + "')"
+    sql+= " UNION "
+    sql+= "SELECT * FROM user WHERE USER_ID IN (SELECT USER1 FROM friends WHERE USER2 = '" + username + "')"
+    cur.execute(sql)
+    List = list(cur.fetchall())
+    List.sort()
+    fList = []
+    for i in List :
+        fList.append(i)
+    sql = "SELECT * FROM user WHERE USER_ID = '" + username + "'"
+    cur.execute(sql)
+    my = cur.fetchone()
+    cur.close()
+    conn.close()
+    return render_template('/friends.html', my = my, fList = fList)
 
-@app.route('/profile', methods=['GET'])
-def profile() :
+@app.route('/changeProfile', methods=['POST'])
+def changeProfile():
     username = session['username']
-    return render_template('/profile.html',username = username)
+    name = request.form['username']
+    comment = request.form['comment']
+    conn = pymysql.connect(host=IP, user=USER, password=PASSWORD, db=DB, charset='utf8')
+    cur = conn.cursor()
+    sql = "UPDATE user SET USER_NAME = '" + name + "', USER_SELF = '" + comment + "' WHERE USER_ID = '" + username + "'"
+    cur.execute(sql)
+    conn.commit()
+    cur.close()
+    conn.close()
+    return redirect("profile/"+username)
 
-@app.route('/image', methods=['GET'])
-def image() :
+@app.route('/profile/<user>', methods=['GET'])
+def profile(user) :
     username = session['username']
-    return render_template('/image.html',username = username)
+    conn = pymysql.connect(host=IP, user=USER, password=PASSWORD, db=DB, charset='utf8')
+    cur = conn.cursor()
+    sql = "SELECT * FROM user WHERE USER_ID = '" + user + "'"
+    cur.execute(sql)
+    userProfile = cur.fetchone()
+    cur.close()
+    conn.close()
+    return render_template('/profile.html',username = username, userProfile = userProfile)
+
+@app.route('/profile/<user>/image', methods=['GET'])
+def image(user) :
+    conn = pymysql.connect(host=IP, user=USER, password=PASSWORD, db=DB, charset='utf8')
+    cur = conn.cursor()
+    sql = "SELECT * FROM user WHERE USER_ID = '" + user + "'"
+    cur.execute(sql)
+    userProfile = cur.fetchone()
+    cur.close()
+    conn.close()
+    return render_template('/image.html',userProfile = userProfile)
+
+
+@app.route('/profile/<user>/edit')
+def edit(user) :
+    username = session['username']
+    conn = pymysql.connect(host=IP, user=USER, password=PASSWORD, db=DB, charset='utf8')
+    cur = conn.cursor()
+    sql = "SELECT * FROM user WHERE USER_ID = '" + user + "'"
+    cur.execute(sql)
+    userProfile = cur.fetchone()
+    cur.close()
+    conn.close()
+    return render_template('/edit.html', userProfile = userProfile)
 
 @app.route('/chats', methods=['GET'])
 def channel() :

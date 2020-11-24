@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="../../../static/styles.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>sohn's profile - Kokoa Clone</title>
+        <style>
+            body{
+                background-image: url("https://cdn.pixabay.com/photo/2020/06/29/21/13/city-5354477__340.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        </style>
+    </head>
+    <body>
+        <div class = "status-bar">
+            <div class = "status-bar__column">
+                <span>No Service</span>
+                <i class="fas fa-wifi"></i>
+            </div>
+            <div class = "status-bar__column">
+                <span>18:43</span>
+            </div>
+            <div class = "status-bar__column">
+                <span>90%</span>
+                <i class="fas fa-battery-three-quarters fa-lg"></i>
+                <i class="fas fa-bolt"></i>
+            </div>
+        </div>
+        <header class="alt-header">
+            <div class="alt-header__column">
+                <a href="/friends"><i class="fas fa-times fa-2x"></i></a>
+            </div>
+            <div class="alt-header__column"></div>
+            <div class="alt-header__column"></div>
+        </header>
+
+        <form id = "edit-form" action="../../changeProfile" method="POST">
+            <div class = "profile-content">
+                <a>
+                    <img src="{{userProfile[3]}}"/>
+                </a>
+                <input class = "edit_name" name = "username" type="text" value ="{{userProfile[1]}}"/>
+                <input class = "edit_comment" name = "comment" type="text" value ="{{userProfile[5]}}"/>
+            </div>
+            <footer class = "footer">
+                <ul class = "profile__lists">
+                    <button class = "edit_submit" type = "submit">
+                        <li class ="profile__btn" >
+                            <a class = "profile__link">
+                                <i class="profile__btn-img fas fa-check fa-2x"></i>
+                            </a>
+                            <span class = "profile__btn-text">Done</span>
+                        </li>
+                    </button>
+
+                    <li class ="profile__btn">
+                        <a class = "profile__link" href="/profile/{{username}}">
+                            <i class="profile__btn-img fas fa-times fa-2x"></i>
+                        </a>
+                        <span class = "profile__btn-text">Cancel</span>
+                    </li>
+                </ul>
+            </footer>
+
+        </form>
+
+
+
+
+        <div id = "no-mobile">
+            <span>Your Sceen is too big</span>
+        </div>
+        <script src="https://kit.fontawesome.com/903f061087.js" crossorigin="anonymous"></script>
+    </body>
+</html>
