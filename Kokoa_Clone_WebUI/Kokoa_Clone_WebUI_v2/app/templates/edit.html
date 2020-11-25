@@ -7,7 +7,7 @@
         <title>sohn's profile - Kokoa Clone</title>
         <style>
             body{
-                background-image: url("https://cdn.pixabay.com/photo/2020/06/29/21/13/city-5354477__340.jpg");
+                background-image: url("{{userProfile[4]}}");
                 background-repeat: no-repeat;
                 background-size: cover;
             }
@@ -39,7 +39,11 @@
         <form id = "edit-form" action="../../changeProfile" method="POST">
             <div class = "profile-content">
                 <a>
-                    <img src="{{userProfile[3]}}"/>
+                    {% if userProfile[3] %}
+                        <img src="{{userProfile[3]}}"/>
+                    {% else %}
+                        <img src="https://cdn.imweb.me/thumbnail/20200309/254b4ca53ad5b.jpeg"/>
+                    {% endif %}
                 </a>
                 <input class = "edit_name" name = "username" type="text" value ="{{userProfile[1]}}"/>
                 <input class = "edit_comment" name = "comment" type="text" value ="{{userProfile[5]}}"/>

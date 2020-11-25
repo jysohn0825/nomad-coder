@@ -6,15 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>sohn's profile - Kokoa Clone</title>
         <style>
-            body{
-                background-image: url("{{userProfile[4]}}");
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-position: center;
-            }
+            {% if userProfile[4] %}
+                body{
+                    background-image: url("{{userProfile[4]}}");
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center center;
+                }
+            {% endif %}
         </style>
     </head>
-    <body>
+    <body class = "profile-screen detail-screen" >
         <div class = "status-bar">
             <div class = "status-bar__column">
                 <span>No Service</span>
@@ -41,7 +43,11 @@
         <main>
             <div class = "profile-content">
                 <a href="/profile/{{userProfile[0]}}/image">
-                    <img src="{{userProfile[3]}}"/>
+                    {% if userProfile[3] %}
+                        <img src="{{userProfile[3]}}"/>
+                    {% else %}
+                        <img src="https://cdn.imweb.me/thumbnail/20200309/254b4ca53ad5b.jpeg"/>
+                    {% endif %}
                 </a>
                 <div class = "profile_name">
                     {{userProfile[1]}}

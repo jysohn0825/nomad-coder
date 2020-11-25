@@ -68,11 +68,8 @@ def friends() :
     sql+= " UNION "
     sql+= "SELECT * FROM user WHERE USER_ID IN (SELECT USER1 FROM friends WHERE USER2 = '" + username + "')"
     cur.execute(sql)
-    List = list(cur.fetchall())
-    List.sort()
-    fList = []
-    for i in List :
-        fList.append(i)
+    fList = list(cur.fetchall())
+    fList.sort()
     sql = "SELECT * FROM user WHERE USER_ID = '" + username + "'"
     cur.execute(sql)
     my = cur.fetchone()
@@ -145,7 +142,14 @@ def fin() :
 @app.route('/more', methods=['GET'])
 def mor() :
     username = session['username']
-    return render_template('/more.html',username = username)
+    conn = pymysql.connect(host=IP, user=USER, password=PASSWORD, db=DB, charset='utf8')
+    cur = conn.cursor()
+    sql = "SELECT * FROM user WHERE USER_ID = '" + username + "'"
+    cur.execute(sql)
+    userProfile = cur.fetchone()
+    cur.close()
+    conn.close()
+    return render_template('/more.html',userProfile = userProfile)
 
 @app.route('/settings', methods=['GET'])
 def set() :

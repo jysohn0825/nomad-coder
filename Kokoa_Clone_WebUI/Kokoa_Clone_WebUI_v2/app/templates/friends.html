@@ -39,7 +39,11 @@
             <div class = "user-component">
                 <div class="user-component__column-title">
                     <a href="/profile/{{my[0]}}" >
-                        <img class="user-component__img--xl user-component__img" src="{{my[3]}}"/>
+                        {% if my[3] %}
+                            <img class="user-component__img--xl user-component__img" src="{{my[3]}}"/>
+                        {% else %}
+                            <img src="https://cdn.imweb.me/thumbnail/20200309/254b4ca53ad5b.jpeg"/>
+                        {% endif %}
                     </a>
                     <div class = "user-component__text">
                         <h4 class="user-component__title">{{my[1]}}</h4>
@@ -80,10 +84,15 @@
                                     <li class = "user-component">
                                         <div class="user-component__column">
                                             <a href="/profile/{{i[0]}}" >
-                                                <img class="user-component__img--sm user-component__img" src="{{i[3]}}">
+                                                {% if i[3] %}
+                                                    <img class="user-component__img--sm user-component__img" src="{{i[3]}}">
+                                                {% else %}
+                                                    <img src="https://cdn.imweb.me/thumbnail/20200309/254b4ca53ad5b.jpeg"/>
+                                                {% endif %}
                                             </a>
                                             <div class = "user-component__text">
-                                                <h4 class="user-component__title user-component__title--not-bold">{{i[1]}}</h4>
+                                                <h4 class="user-component__title">{{i[1]}}</h4>
+                                                <h6 class="user-component__subtitle">{{i[5]}}</h6>
                                             </div>
                                         </div>
                                         <div class="user-component__column">
