@@ -55,3 +55,7 @@ input:focus{
 	display:none;
 	
 }
+
+a::visited{
+    text-decoration: none;
+}
