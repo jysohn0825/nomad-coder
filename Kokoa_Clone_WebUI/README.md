@@ -2,6 +2,8 @@
 
 ## Explanation([URL](https://jysohn0825.github.io/kokoaclone/))
 
+## Ver 2([URL](https://github.com/jysohn0825/nomad_coder/tree/master/Kokoa_Clone_WebUI/Kokoa_Clone_WebUI_v2/app))
+
 KakaoTalk GUI clone<br>
 <br>
 ### Something new learn - BEM, display:flex, animation, media-query <br>
